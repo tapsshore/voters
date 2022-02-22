@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: voters
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/voters
+    username: root
+    password: mysql
+server:
+  port: 8090
