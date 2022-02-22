@@ -1,31 +1,19 @@
 package com.shoshore.voters.service;
 
 import com.shoshore.voters.domain.Voter;
-import com.shoshore.voters.dto.VoterToRegisterDto;
-import com.shoshore.voters.repository.VoterRepository;
+import com.shoshore.voters.dto.ServiceResponse;
+import com.shoshore.voters.dto.VoterRegistrationRequest;
 import lombok.NonNull;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class VoterService {
+public interface VoterService {
 
-    private final VoterRepository voterRepository;
-
-    public VoterService(VoterRepository voterRepository) {
-        this.voterRepository = voterRepository;
-    }
-    public List<Voter> findAll() {
-        return voterRepository.findAll();
-    }
-    public Optional<Voter> findVoterById(@NonNull Long id) {
-        return voterRepository.findById(id);
-    }
-
-    public Voter register(@NonNull VoterToRegisterDto voterToRegister) {
-        return  null;
-
-    }
+    List<Voter> findAll();
+    Optional<Voter> findVoterById(@NonNull Long id);
+    ResponseEntity<ServiceResponse<VoterRegistrationRequest>> register(@NonNull VoterRegistrationRequest voterToRegister);
 }

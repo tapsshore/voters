@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class VoterToRegisterDto {
+public class VoterRegistrationRequest {
 
     private String firstName;
     private String lastName;

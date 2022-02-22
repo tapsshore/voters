@@ -4,11 +4,9 @@ package com.shoshore.voters.api;
 import com.shoshore.voters.api.Mappings.Mappings;
 import com.shoshore.voters.constants.Constants;
 import com.shoshore.voters.domain.Voter;
-import com.shoshore.voters.dto.VoterToRegisterDto;
+import com.shoshore.voters.dto.VoterRegistrationRequest;
 import com.shoshore.voters.service.VoterService;
-import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +15,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 @Slf4j
 @RestController
-@RequestMapping(Mappings.VOTER)
+@RequestMapping("api/voter")
 public class VoterController {
     @Autowired
     private  VoterService voterService;
@@ -45,10 +42,10 @@ public class VoterController {
                 );
     }
 
-    @PostMapping
+    @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Object> register(@RequestBody VoterToRegisterDto voterToRegisterDto) {
-            voterService.register(voterToRegisterDto);
+    public ResponseEntity<Object> register(@RequestBody VoterRegistrationRequest voterRegistrationRequest) {
+            voterService.register(voterRegistrationRequest);
             return ResponseEntity.status(HttpStatus.OK).body("voter registered");
     }
 }
